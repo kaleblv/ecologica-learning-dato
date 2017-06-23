@@ -27,6 +27,26 @@ page '/*.txt', layout: false
 #   },
 # )
 
+
+# Templates for details
+
+# due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
+# always use `dato` inside a `.tap` method block, like this:
+dato.tap do |dato|
+
+  # iterate over the "Blog post" records...
+  dato.course_details.each do |course|
+
+    # ...and create a page for each article starting from a template!
+    proxy "/cursos/presenciales/#{course.slug}.html", "/templates/course-detail.html", locals: { course: course }
+
+  end
+end
+
+# tell Middleman to ignore the template
+ignore "/templates/course-detail.html.erb"
+
+
 # Helpers
 # Methods defined in the helpers block are available in templates
 # https://middlemanapp.com/basics/helper-methods/
@@ -44,3 +64,10 @@ page '/*.txt', layout: false
 #   activate :minify_css
 #   activate :minify_javascript
 # end
+
+activate :dato, live_reload: true
+
+# enable livereload on development
+configure :development do
+  activate :livereload
+end
