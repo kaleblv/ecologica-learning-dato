@@ -45,10 +45,3 @@ page '/*.txt', layout: false
 #   activate :minify_css
 #   activate :minify_javascript
 # end
-
-activate :dato, live_reload: true
-
-# enable livereload on development
-configure :development do
-  activate :livereload
-end
