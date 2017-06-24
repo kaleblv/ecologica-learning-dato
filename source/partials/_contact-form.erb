@@ -1,0 +1,58 @@
+<form id="contact-form" action="https://api.formbucket.com/f/buk_82FbY6cc0Z1u84BNSq962NLN" method="post" target="_blank">
+
+  <div class="row">
+
+    <div class="col-sm-6">
+
+      <div class="form-group">
+        <label for="inputName">Nombre <span class="font10 text-danger">(requerido)</span></label>
+        <input id="inputName" type="text" name="inputName" class="form-control" data-error="Tu nombre es requerido" required>
+        <div class="help-block with-errors"></div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6">
+
+      <div class="form-group">
+        <label for="inputEmail">Email <span class="font10 text-danger">(requerido)</span></label>
+        <input id="inputEmail" type="email" name="inputEmail" class="form-control" data-error="Tu email es requerido y debe ser un email valido" required>
+        <div class="help-block with-errors"></div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12">
+
+      <div class="form-group">
+        <label for="inputSubject">Asunto</label>
+        <input type="text" class="form-control" name="inputSubject" />
+      </div>
+
+    </div>
+
+    <div class="col-sm-12">
+
+      <div class="form-group">
+        <label for="inputMessage">Mensaje <span class="font10 text-danger">(requerido)</span></label>
+        <textarea id="inputMessage" name="inputMessage" class="form-control" rows="8" data-minlength="50" data-error="Tu mensaje es requerido y debe tener mas de 50 caractares" required></textarea>
+        <div class="help-block with-errors"></div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-primary mt-5">Enviar Mensaje</button>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-response hidden">
+        <p>El formulario se a enviado con éxito.</p>
+      </div>
+    </div>
+  </div>
+
+</form>

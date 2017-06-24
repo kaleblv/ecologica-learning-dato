@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+        <%= partial "partials/tag-manager-head" %>
+        <!-- Use title if it's in the page YAML frontmatter -->
+        <title><%= current_page.data.title %></title>
+        <meta name="description" content="<%= current_page.data.description %>">
+        <meta name="keywords" content="<%= current_page.data.keywords %>">
+
+
+        <%= stylesheet_link_tag :site %>
+
+
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+
+    <body class="<%= page_classes %>">
+      <%= partial "partials/tag-manager-body" %>
+        <%= partial "partials/intro-loader" %>
+        <!-- start Container Wrapper -->
+        <div class="container-wrapper">
+
+            <%= partial "partials/header" %>
+
+            <!-- start Main Wrapper -->
+            <div class="main-wrapper scrollspy-container">
+                <%= yield %>
+            </div>
+            <!-- end Main Wrapper -->
+
+            <%= partial "partials/footer" %>
+
+        </div>
+        <!-- end Container Wrapper -->
+
+        <%= partial "partials/back-to-top" %>
+
+        <%= partial "partials/modals" %>
+        <!-- JS -->
+        <script type="text/javascript" src="/javascripts/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-migrate-1.4.1.min.js"></script>
+        <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/javascripts/compressed.js"></script>
+        <script type="text/javascript" src="/javascripts/customs.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-validation/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-validation/localization/messages_es.min.js"></script>
+        <script>
+
+        $(function() {
+            $('form').validate({
+              submitHandler: function(form) {
+                var subscribeForm = $('#contact-form');
+                          //Form is valid, make Ajax call
+                          $.ajax({
+                            url: subscribeForm.prop('action'),
+                            type: "POST",
+                            crossDomain: true,
+                            headers : {
+                              'accept' : 'application/javascript',
+                            },
+                            data: $("#contact-form").serialize(),
+                            datatype: "html",
+                            complete: function(data, textStatus ,XHR) {
+                                $('.form-response').removeClass('hidden');
+                                $('#contact-form input, #contact-form textarea').val('');
+                            }
+                          });
+                          return false;
+                      }
+            });
+        });
+
+
+        </script>
+    </body>
+</html>

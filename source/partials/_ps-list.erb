@@ -1,0 +1,41 @@
+<% dato.courses.each do |course| %>
+<div class="GridLex-col-4_mdd-6_sm-6_xs-6_xss-12 course-item-item" data-category="<%= course.course_category %>">
+    <div class="course-item">
+
+        <a href="../cursos/presenciales/<%= course.course_link %>/">
+            <div class="course-item-image">
+                <img src="<%= course.course_image %>" alt="Image" class="img-responsive">
+            </div>
+            <!--
+            <div class="course-item-top clearfix">
+                <div class="course-item-price bg-danger">
+                    $ <%= course.price %> MXN
+                </div>
+            </div>
+          -->
+            <div class="course-item-content">
+                <h3 class="text-primary"><span class="title"><%= course.title %></span></h3>
+            </div>
+            <div class="course-item-bottom clearfix">
+                <div>
+                    <i class="fa fa-folder-open-o"></i>
+                    <span class="block">
+                        <span class="category"><%= course.area %></span>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span class="block">
+                        <%= course.modules %>
+                        Modulos</span>
+                </div>
+                <div>
+                    <i class="fa fa-calendar-check-o"></i>
+                    <span class="block">
+                        <%= course.duration %> Horas</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<% end %>

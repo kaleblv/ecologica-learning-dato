@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+        <%= partial "partials/tag-manager-head" %>
+        <!-- Use title if it's in the page YAML frontmatter -->
+        <title><%= current_page.data.title %></title>
+        <meta name="description" content="<%= current_page.data.description %>">
+        <meta name="keywords" content="<%= current_page.data.keywords %>">
+
+        <%= stylesheet_link_tag :site %>
+
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+
+    <body class="<%= page_classes %>">
+      <%= partial "partials/tag-manager-body" %>
+        <%= partial "partials/intro-loader" %>
+        <!-- start Container Wrapper -->
+        <div class="container-wrapper">
+
+            <%= partial "partials/header" %>
+
+            <!-- start Main Wrapper -->
+            <div class="main-wrapper scrollspy-container">
+                <%= yield %>
+            </div>
+            <!-- end Main Wrapper -->
+
+            <%= partial "partials/footer" %>
+
+        </div>
+        <!-- end Container Wrapper -->
+
+        <%= partial "partials/back-to-top" %>
+
+        <%= partial "partials/modals" %>
+        <!-- JS -->
+        <script type="text/javascript" src="/javascripts/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-migrate-1.4.1.min.js"></script>
+        <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/javascripts/compressed.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+        <script type="text/javascript" src="/javascripts/latinize.js"></script>
+        <script type="text/javascript" src="/javascripts/customs.js"></script>
+
+        <script type="text/javascript">
+        /**
+         * Course pagination and filter
+         */
+
+       var courseList = new List('course-list', {
+          page: 24,
+          pagination: true,
+          valueNames: [ 'category', 'title' ]
+        });
+
+        var listArray = courseList.get();
+
+
+
+
+        $( listArray ).each(function( index ) {
+           var noAccents = latinize(listArray[index]._values.title);
+           listArray[index]._values.title = noAccents;
+         });
+
+
+
+       function printQuantity() {
+         var listQuantity = $('.course-item-item').length;
+         $('.course-quantity').html(listQuantity);
+       }
+
+       $('.course-filter_item').click(function() {
+         var category = this.dataset.category
+         $('.course-filter_item').removeClass('active');
+         $(this).addClass('active');
+         courseList.filter(function(item) {
+            if (item.values().category == category) {
+              $('.course-category').html(category);
+              return true;
+            } else {
+              return false;
+            }
+          });
+          if( category === 'all') {
+             $('.course-category').html('Total');
+             courseList.filter();
+             printQuantity();
+             return false;
+          }
+         printQuantity();
+         return false;
+       });
+
+
+       $('.search-course').keyup(function(){
+         courseList.filter();
+         var searchTerm = latinize($(this).val());
+         courseList.search(searchTerm);
+         printQuantity();
+         $('.course-category').html('Total');
+       });
+
+
+
+       printQuantity();
+        </script>
+    </body>
+</html>
