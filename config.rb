@@ -28,6 +28,11 @@ page '/*.txt', layout: false
 # )
 
 
+ignore "/course.html"
+data.courses.each do |p|
+  proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
+end
+
 # Helpers
 # Methods defined in the helpers block are available in templates
 # https://middlemanapp.com/basics/helper-methods/
