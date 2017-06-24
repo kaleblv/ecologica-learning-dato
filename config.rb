@@ -28,22 +28,11 @@ page '/*.txt', layout: false
 # )
 
 
-ignore "/course.html"
-data.courses.each do |p|
-  proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
-end
+#ignore "/course.html"
+#data.courses.each do |p|
+#  proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
+#end
 
-
-# due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
-# always use `dato` inside a `.tap` method block, like this:
-dato.tap do |dato|
-  dato.courses.each do |p|
-    proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
-  end
-end
-
-# tell Middleman to ignore the template
-ignore "/course.html"
 
 
 
@@ -58,6 +47,19 @@ activate :dato,
   token: '36b425f0bb13f6863917',
   base_url: 'https://timber-grader-randy-62421.netlify.com/',
   live_reload: true
+
+
+  # due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
+  # always use `dato` inside a `.tap` method block, like this:
+  dato.tap do |dato|
+
+    dato.courses.each do |p|
+      proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
+    end
+
+  end
+
+  ignore "/course.html"
 
 # Helpers
 # Methods defined in the helpers block are available in templates
