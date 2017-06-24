@@ -5,7 +5,6 @@ description: Solicita tu cotización y nos pondremos en contacto lo mas pronto p
 keywords: cotizacion, solicitud
 ---
 
-<% c = locals[:project] %>
 
 <div class="equal-content-sidebar-wrapper detail-page-wrapper">
 
@@ -28,10 +27,10 @@ keywords: cotizacion, solicitud
 										<div class="course-item alt-no-bottom bg-light-02 mb-30">
 
 												<div class="course-item-image">
-													<img src="<%= c[:course_image] %>" alt="Image" class="img-responsive">
+													<img src="<%= course.course_image %>" alt="Image" class="img-responsive">
 												</div>
 												<div class="course-item-content">
-													<h3 class="text-primary"><%= c[:title] %></h3>
+													<h3 class="text-primary"><%= course.title %></h3>
 												</div>
 
 										</div>
@@ -48,7 +47,7 @@ keywords: cotizacion, solicitud
 
 									<div class="payment-content-wrapper mb-0">
 
-										<form action="https://api.formbucket.com/f/<%= c[:form_id] %>" method="post" target="_blank">	
+										<form action="https://api.formbucket.com/f/<%= course.form_id %>" method="post" target="_blank">	
 
 										<div class="row">
 

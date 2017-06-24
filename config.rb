@@ -64,6 +64,8 @@ activate :dato,
   ignore "/course.html"
 
 
+# Templates for details
+
   # due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
   # always use `dato` inside a `.tap` method block, like this:
   dato.tap do |dato|
@@ -75,6 +77,41 @@ activate :dato,
   end
 
   ignore "/cursos/presenciales/course-detail.html"
+
+
+
+
+  # Templates for register
+
+
+  # due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
+  # always use `dato` inside a `.tap` method block, like this:
+  dato.tap do |dato|
+
+    dato.courses.each do |p|
+      proxy "/cotizacion/presenciales/#{p.course_link}/index.html", "/cotizacion/presenciales/course-attend.html", locals: { course: p }
+    end
+
+  end
+
+  ignore "/cotizacion/presenciales/course-attend.html"
+
+
+
+
+  # Templates for confirmation
+
+  # due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
+  # always use `dato` inside a `.tap` method block, like this:
+  dato.tap do |dato|
+
+    dato.courses.each do |p|
+      proxy "/confirmacion/presenciales/#{p.course_link}/index.html", "/confirmacion/presenciales/course-confirmation.html", locals: { course: p }
+    end
+
+  end
+
+  ignore "/confirmacion/presenciales/course-confirmation.html"
 
 
 
