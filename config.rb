@@ -47,7 +47,6 @@ ignore "/course.html"
 
 
 
-activate : live_reload: true
 
 # enable livereload on development
 configure :development do
@@ -57,7 +56,8 @@ end
 
 activate :dato,
   token: '36b425f0bb13f6863917',
-  base_url: 'https://timber-grader-randy-62421.netlify.com/'
+  base_url: 'https://timber-grader-randy-62421.netlify.com/',
+  live_reload: true
 
 # Helpers
 # Methods defined in the helpers block are available in templates
