@@ -34,8 +34,20 @@ data.courses.each do |p|
 end
 
 
+# due to how middleman 4 collections work (http://bit.ly/2jHZTI9),
+# always use `dato` inside a `.tap` method block, like this:
+dato.tap do |dato|
+  dato.courses.each do |p|
+    proxy "/#{p.title.parameterize}.html", "/course.html", locals: { course: p }
+  end
+end
 
-activate :dato, live_reload: true
+# tell Middleman to ignore the template
+ignore "/course.html"
+
+
+
+activate : live_reload: true
 
 # enable livereload on development
 configure :development do
@@ -43,6 +55,9 @@ configure :development do
 end
 
 
+activate :dato,
+  token: '36b425f0bb13f6863917',
+  base_url: 'https://timber-grader-randy-62421.netlify.com/'
 
 # Helpers
 # Methods defined in the helpers block are available in templates
