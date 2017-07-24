@@ -47,7 +47,7 @@ end
 
 activate :dato,
   token: '36b425f0bb13f6863917',
-  base_url: 'https://timber-grader-randy-62421.netlify.com/',
+  base_url: 'https://www.ecologicalearning.com/',
   live_reload: true
 
 
